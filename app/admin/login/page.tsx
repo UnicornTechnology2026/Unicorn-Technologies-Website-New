@@ -1,26 +1,33 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { useAuth } from '@/lib/auth-context';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Sparkles, Loader2, Lock, Mail, ArrowLeft, UserPlus } from 'lucide-react';
-import { toast } from 'sonner';
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/lib/auth-context";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Sparkles,
+  Loader2,
+  Lock,
+  Mail,
+  ArrowLeft,
+  UserPlus,
+} from "lucide-react";
+import { toast } from "sonner";
 
 export default function AdminLoginPage() {
   const { signIn } = useAuth();
   const router = useRouter();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
   // Bootstrap state
   const [showBootstrap, setShowBootstrap] = useState(false);
-  const [bsEmail, setBsEmail] = useState('');
-  const [bsPassword, setBsPassword] = useState('');
-  const [bsName, setBsName] = useState('');
+  const [bsEmail, setBsEmail] = useState("");
+  const [bsPassword, setBsPassword] = useState("");
+  const [bsName, setBsName] = useState("");
   const [bsLoading, setBsLoading] = useState(false);
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -31,8 +38,8 @@ export default function AdminLoginPage() {
     if (error) {
       toast.error(error);
     } else {
-      toast.success('Welcome back!');
-      router.push('/admin');
+      toast.success("Welcome back!");
+      router.push("/admin");
     }
   };
 
@@ -42,23 +49,29 @@ export default function AdminLoginPage() {
     try {
       const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
       const res = await fetch(`${supabaseUrl}/functions/v1/admin-bootstrap`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
           Authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`,
         },
-        body: JSON.stringify({ email: bsEmail, password: bsPassword, full_name: bsName }),
+        body: JSON.stringify({
+          email: bsEmail,
+          password: bsPassword,
+          full_name: bsName,
+        }),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Bootstrap failed');
-      toast.success('Admin account created. You can now log in.');
+      if (!res.ok) throw new Error(data.error || "Bootstrap failed");
+      toast.success("Admin account created. You can now log in.");
       setShowBootstrap(false);
       setEmail(bsEmail);
-      setBsEmail('');
-      setBsPassword('');
-      setBsName('');
+      setBsEmail("");
+      setBsPassword("");
+      setBsName("");
     } catch (err) {
-      toast.error(err instanceof Error ? err.message : 'Failed to create admin');
+      toast.error(
+        err instanceof Error ? err.message : "Failed to create admin",
+      );
     } finally {
       setBsLoading(false);
     }
@@ -72,11 +85,16 @@ export default function AdminLoginPage() {
             <Sparkles className="h-6 w-6" />
           </div>
           <h1 className="text-2xl font-bold">Admin Dashboard</h1>
-          <p className="mt-1 text-sm text-muted-foreground">Sign in to manage your site</p>
+          <p className="mt-1 text-sm text-muted-foreground">
+            Sign in to manage your site
+          </p>
         </div>
 
         {!showBootstrap ? (
-          <form onSubmit={handleLogin} className="space-y-4 rounded-2xl border border-border bg-card p-6 md:p-8">
+          <form
+            onSubmit={handleLogin}
+            className="space-y-4 rounded-2xl border border-border bg-card p-6 md:p-8"
+          >
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <div className="relative">
@@ -114,7 +132,7 @@ export default function AdminLoginPage() {
                   Signing in...
                 </>
               ) : (
-                'Sign In'
+                "Sign In"
               )}
             </Button>
 
@@ -135,13 +153,17 @@ export default function AdminLoginPage() {
             </a>
           </form>
         ) : (
-          <form onSubmit={handleBootstrap} className="space-y-4 rounded-2xl border border-border bg-card p-6 md:p-8">
+          <form
+            onSubmit={handleBootstrap}
+            className="space-y-4 rounded-2xl border border-border bg-card p-6 md:p-8"
+          >
             <div className="mb-2 flex items-center gap-2 text-sm font-semibold text-primary">
               <UserPlus className="h-4 w-4" />
               Create Admin Account
             </div>
             <p className="text-xs text-muted-foreground">
-              This creates the first admin account. Once created, this option will be locked.
+              This creates the first admin account. Once created, this option
+              will be locked.
             </p>
             <div className="space-y-2">
               <Label htmlFor="bs-name">Full Name</Label>
@@ -183,7 +205,7 @@ export default function AdminLoginPage() {
                   Creating...
                 </>
               ) : (
-                'Create Admin Account'
+                "Create Admin Account"
               )}
             </Button>
             <button
