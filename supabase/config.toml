@@ -1,0 +1,7 @@
+[functions.admin-bootstrap]
+verify_jwt = false
+entrypoint = "./functions/admin-bootstrap/index.ts"
+
+[functions.submit-enquiry]
+verify_jwt = false
+entrypoint = "./functions/submit-enquiry/index.ts"
