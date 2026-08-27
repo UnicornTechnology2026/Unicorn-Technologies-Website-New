@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .text-stroke-primary {
+    -webkit-text-stroke: 1.5px #f97316;
+  }
+  .text-stroke-dark {
+    -webkit-text-stroke: 1.5px #0f172a;
+  }
+  .text-stroke-blue {
+    -webkit-text-stroke: 1.5px #2563eb;
+  }
+  .tech-grid {
+    background-size: 32px 32px;
+    background-image: 
+      linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+  }
+  .tech-grid-dots {
+    background-size: 24px 24px;
+    background-image: radial-gradient(rgba(15, 23, 42, 0.08) 1px, transparent 1px);
+  }
+  .bg-radial-glow {
+    background: radial-gradient(circle at 50% 0%, rgba(249, 115, 22, 0.08) 0%, rgba(37, 99, 235, 0.04) 50%, transparent 80%);
+  }
+}
+
+/* Light Theme Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+body {
+  background-color: #f8fafc;
+  color: #0f172a;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
