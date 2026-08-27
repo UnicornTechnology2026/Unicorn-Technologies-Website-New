@@ -1,7 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
-import { supabase } from "@/lib/supabase/client";
+import { createContext, useContext, useState } from "react";
 import type { SiteSettings } from "@/lib/types";
 
 const defaultSettings: SiteSettings = {
@@ -11,7 +10,7 @@ const defaultSettings: SiteSettings = {
   about_description:
     "We are a full-service software and digital solutions company helping startups and enterprises build, scale, and maintain world-class digital products.",
   email: "narendra@unicorntechnologiess.com",
-  phone: "+91 9921224567 ",
+  phone: "+91 9921224567",
   whatsapp: "+91 9921224567",
   address: "382, Near Trikoni Garden, Shankar Nagar, Nagpur",
   facebook_url: "",
@@ -46,21 +45,13 @@ export function SiteSettingsProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [settings, setSettings] = useState<SiteSettings>(defaultSettings);
-  const [loading, setLoading] = useState(true);
+  const [settings] = useState<SiteSettings>(defaultSettings);
+  const loading = false;
 
-  const refresh = async () => {
-    const { data } = await supabase
-      .from("site_settings")
-      .select("*")
-      .limit(1)
-      .maybeSingle();
-    if (data) setSettings({ ...defaultSettings, ...data });
-  };
-
-  useEffect(() => {
-    refresh().finally(() => setLoading(false));
-  }, []);
+  // No-op: settings are now hardcoded above (defaultSettings) instead of
+  // being fetched from Supabase. Edit the defaultSettings object in this
+  // file to change email, phone, address, etc.
+  const refresh = async () => {};
 
   return (
     <SettingsContext.Provider value={{ settings, loading, refresh }}>

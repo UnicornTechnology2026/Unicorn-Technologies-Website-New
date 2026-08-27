@@ -28,37 +28,6 @@ export interface EnquiryNote {
   created_at: string;
 }
 
-export interface PortfolioItem {
-  id: string;
-  title: string;
-  category: string;
-  description: string | null;
-  image_url: string | null;
-  project_url: string | null;
-  client: string | null;
-  tags: string[];
-  featured: boolean;
-  published: boolean;
-  sort_order: number;
-  created_at: string;
-  updated_at: string;
-}
-
-export interface BlogPost {
-  id: string;
-  title: string;
-  slug: string;
-  excerpt: string | null;
-  content: string;
-  cover_image: string | null;
-  author: string | null;
-  tags: string[];
-  status: 'draft' | 'published';
-  published_at: string | null;
-  created_at: string;
-  updated_at: string;
-}
-
 export interface Testimonial {
   id: string;
   author: string;

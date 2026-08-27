@@ -37,7 +37,7 @@ export default function Footer() {
               </span>
               <span>
                 {settings.company_name.replace(" Technologies", "")}
-                <span className="text-primary">Technologies</span>
+                &nbsp; <span className="text-primary">Technologies</span>
               </span>
             </Link>
             <p className="text-sm text-muted-foreground max-w-xs">
@@ -82,22 +82,6 @@ export default function Footer() {
                   className="text-muted-foreground hover:text-primary"
                 >
                   Services
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/portfolio"
-                  className="text-muted-foreground hover:text-primary"
-                >
-                  Portfolio
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/blog"
-                  className="text-muted-foreground hover:text-primary"
-                >
-                  Blog
                 </Link>
               </li>
               <li>

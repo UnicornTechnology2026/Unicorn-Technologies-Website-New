@@ -11,8 +11,6 @@ const navLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About Us" },
   { href: "/services", label: "Services" },
-  { href: "/portfolio", label: "Portfolio" },
-  { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -48,7 +46,7 @@ export default function Navbar() {
           </span>
           <span className="text-foreground">
             {settings.company_name.replace(" Technologies", "")}
-            <span className="text-primary">Technologies</span>
+            &nbsp; <span className="text-primary">Technologies</span>
           </span>
         </Link>
 

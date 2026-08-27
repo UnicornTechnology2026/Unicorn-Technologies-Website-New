@@ -123,11 +123,11 @@ export const LEAD_STATUS_COLORS: Record<string, string> = {
 };
 
 export const BUDGET_OPTIONS = [
-  'Under $5,000',
-  '$5,000 - $15,000',
-  '$15,000 - $50,000',
-  '$50,000 - $100,000',
-  '$100,000+',
+  'Under ₹ 5,000',
+  '₹5,000 - ₹15,000',
+  '₹15,000 - ₹50,000',
+  '₹50,000 - ₹100,000',
+  '₹100,000+',
   'Not sure yet',
 ];
 
