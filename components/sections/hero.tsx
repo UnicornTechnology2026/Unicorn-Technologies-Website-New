@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { ArrowRight, Phone, Sparkles, CheckCircle2 } from 'lucide-react';
-import { useSettings } from '../settings-provider';
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { ArrowRight, Phone, Sparkles, CheckCircle2 } from "lucide-react";
+import { useSettings } from "../settings-provider";
 
 export default function Hero() {
   const { settings } = useSettings();
@@ -26,15 +26,24 @@ export default function Hero() {
             {settings.tagline}
           </motion.div>
 
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.05 }}
+            className="text-center text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl"
+          >
+            Unicorn <span className="gradient-text">Technologies</span>
+          </motion.div>
+
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl font-bold tracking-tight text-balance sm:text-5xl md:text-6xl lg:text-7xl"
+            className="mt-4 text-xl font-bold tracking-tight text-balance sm:text-2xl md:text-3xl lg:text-4xl"
           >
-            {settings.hero_headline?.split(' ').slice(0, -2).join(' ')}{' '}
-            <span className="gradient-text">
-              {settings.hero_headline?.split(' ').slice(-2).join(' ')}
+            {settings.hero_headline?.split(" ").slice(0, -2).join(" ")}{" "}
+            <span className="">
+              {settings.hero_headline?.split(" ").slice(-2).join(" ")}
             </span>
           </motion.h1>
 
@@ -75,19 +84,26 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground"
           >
-            {['Free consultation', 'No hidden costs', 'Dedicated team'].map((item) => (
-              <span key={item} className="flex items-center gap-1.5">
-                <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-                {item}
-              </span>
-            ))}
+            {["Free consultation", "No hidden costs", "Dedicated team"].map(
+              (item) => (
+                <span key={item} className="flex items-center gap-1.5">
+                  <CheckCircle2 className="h-4 w-4 text-emerald-500" />
+                  {item}
+                </span>
+              ),
+            )}
           </motion.div>
         </div>
 
         {/* Stats */}
-        {(['stats_clients', 'stats_projects', 'stats_team', 'stats_years'] as const).some(
-          (k) => settings[k] && settings[k] !== '0'
-        ) && (
+        {(
+          [
+            "stats_clients",
+            "stats_projects",
+            "stats_team",
+            "stats_years",
+          ] as const
+        ).some((k) => settings[k] && settings[k] !== "0") && (
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -95,16 +111,31 @@ export default function Hero() {
             className="mx-auto mt-20 grid max-w-4xl grid-cols-2 gap-8 md:grid-cols-4"
           >
             {[
-              { label: 'Happy Clients', value: settings.stats_clients, suffix: '+' },
-              { label: 'Projects Delivered', value: settings.stats_projects, suffix: '+' },
-              { label: 'Team Members', value: settings.stats_team, suffix: '' },
-              { label: 'Years Experience', value: settings.stats_years, suffix: '+' },
+              {
+                label: "Happy Clients",
+                value: settings.stats_clients,
+                suffix: "+",
+              },
+              {
+                label: "Projects Delivered",
+                value: settings.stats_projects,
+                suffix: "+",
+              },
+              { label: "Team Members", value: settings.stats_team, suffix: "" },
+              {
+                label: "Years Experience",
+                value: settings.stats_years,
+                suffix: "+",
+              },
             ].map((stat) => (
               <div key={stat.label} className="text-center">
                 <div className="text-3xl font-bold text-foreground md:text-4xl">
-                  {stat.value}{stat.suffix}
+                  {stat.value}
+                  {stat.suffix}
                 </div>
-                <div className="mt-1 text-sm text-muted-foreground">{stat.label}</div>
+                <div className="mt-1 text-sm text-muted-foreground">
+                  {stat.label}
+                </div>
               </div>
             ))}
           </motion.div>

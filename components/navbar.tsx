@@ -46,11 +46,6 @@ export default function Navbar() {
           className="flex items-center justify-center gap-2 font-bold text-lg"
         >
           <img src={logo.src} alt="Logo" className="h-16 w-32" />
-
-          <span className="text-foreground">
-            {settings.company_name.replace(" Technologies", "")}
-            &nbsp; <span className="text-primary">Technologies</span>
-          </span>
         </Link>
 
         <div className="hidden items-center gap-1 md:flex">

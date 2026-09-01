@@ -5,15 +5,15 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222 47% 11%;
+    --foreground: 240 4% 22%;
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 240 4% 22%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 240 4% 22%;
     --primary: 199 89% 48%;
     --primary-foreground: 0 0% 100%;
     --secondary: 210 40% 96%;
-    --secondary-foreground: 222 47% 11%;
+    --secondary-foreground: 240 4% 22%;
     --muted: 210 40% 96%;
     --muted-foreground: 215 16% 47%;
     --accent: 199 89% 48%;
@@ -52,10 +52,11 @@
   }
   .text-balance {
     text-wrap: balance;
+    color:#37373b;
   }
-  .gradient-text {
-    @apply bg-gradient-to-r from-primary to-cyan-400 bg-clip-text text-transparent;
-  }
+ .gradient-text {
+    @apply bg-gradient-to-r from-[#EF0907] to-[#EF0907] bg-clip-text text-transparent;
+  } 
   .glass {
     @apply bg-white/80 backdrop-blur-md;
   }

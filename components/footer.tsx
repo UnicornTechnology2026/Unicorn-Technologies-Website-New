@@ -33,10 +33,9 @@ export default function Footer() {
               href="/"
               className="flex items-center gap-2 font-bold text-lg"
             >
-              <img src={logo.src} alt="Logo" className="h-12 w-20" />
               <span>
                 {settings.company_name.replace(" Technologies", "")}
-                &nbsp; <span className="text-primary">Technologies</span>
+                &nbsp; <span className="gradient-text">Technologies</span>
               </span>
             </Link>
             <p className="text-sm text-muted-foreground max-w-xs">
