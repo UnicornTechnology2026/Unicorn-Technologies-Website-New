@@ -23,7 +23,7 @@ export default function OurProcess() {
         </Reveal>
 
         <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {PROCESS_STEPS.map((step, i) => (
+          {PROCESS_STEPS.map((step: any, i: any) => (
             <Reveal key={step.step} delay={i * 0.1}>
               <div className="relative">
                 {i < PROCESS_STEPS.length - 1 && (

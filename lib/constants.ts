@@ -1,25 +1,60 @@
+// lib/constants.ts
+
 import {
   Code2,
   Smartphone,
   Megaphone,
   ShieldCheck,
   Layers,
+  Monitor,
+  Server,
+  Database,
+  Wrench,
   type LucideIcon,
 } from 'lucide-react';
+
+import {
+  SiAngular,
+  SiJavascript,
+  SiBootstrap,
+  SiJquery,
+  SiReact,
+  SiNextdotjs,
+  SiTypescript,
+  SiTailwindcss,
+  SiHtml5,
+  SiCss,
+  SiNodedotjs,
+  SiExpress,
+  SiNestjs,
+  SiPostgresql,
+  SiMysql,
+  SiMongodb,
+  SiSupabase,
+  SiFirebase,
+  SiFlutter,
+  SiDocker,
+  SiGithub,
+  SiGithubactions,
+  SiFigma,
+  SiCloudflare,
+  SiExpo
+} from 'react-icons/si';
+import type { IconType } from 'react-icons';
 
 import webAppImg from '../assest/web-app.jpg';
 import appDevImg from '../assest/app-dev.jpg';
 import digitalImg from '../assest/digital1.png';
 import supportImg from '../assest/support.jpg';
 import customImg from '../assest/custom.jpg';
- 
+
 export const SERVICES = [
   {
     slug: 'website-development',
     title: 'Website Development',
     icon: Code2,
     short: 'High-performance websites built with modern frameworks.',
-    image:webAppImg,
+    image: webAppImg,
     description:
       'We craft lightning-fast, SEO-optimized websites using Next.js, React, and modern web technologies. From corporate sites to complex web applications, we deliver experiences that convert visitors into customers.',
     features: [
@@ -30,14 +65,13 @@ export const SERVICES = [
       'Performance optimization',
       'Accessibility compliance',
     ],
-   
   },
   {
     slug: 'mobile-app-development',
     title: 'Android & iOS Mobile App Development',
     icon: Smartphone,
     short: 'Native and cross-platform mobile apps for iOS and Android.',
-    image:appDevImg,
+    image: appDevImg,
     description:
       'We build native and cross-platform mobile applications that deliver exceptional user experiences. From concept to App Store launch, we handle the entire mobile development lifecycle.',
     features: [
@@ -54,7 +88,7 @@ export const SERVICES = [
     title: 'Digital Marketing',
     icon: Megaphone,
     short: 'Data-driven marketing that grows your audience and revenue.',
-    image:digitalImg,
+    image: digitalImg,
     description:
       'We drive growth through strategic digital marketing. From SEO and content marketing to paid advertising and social media, we help you reach the right audience and convert them into loyal customers.',
     features: [
@@ -71,7 +105,7 @@ export const SERVICES = [
     title: 'Annual Maintenance & Support',
     icon: ShieldCheck,
     short: 'Ongoing maintenance, security updates, and technical support.',
-    image:supportImg,
+    image: supportImg,
     description:
       'We provide comprehensive maintenance and support plans to keep your digital products running smoothly. From security patches to feature updates, we ensure your investment stays protected.',
     features: [
@@ -103,6 +137,71 @@ export const SERVICES = [
 ] as const;
 
 export type ServiceItem = (typeof SERVICES)[number] & { icon: LucideIcon };
+
+export const TECH_STACK = [
+  {
+    category: 'Frontend',
+    icon: Monitor,
+    items: [
+      { name: 'HTML5', icon: SiHtml5 },
+      { name: 'CSS3', icon: SiCss },
+      { name: 'JavaScript', icon: SiJavascript },
+      { name: 'Angular', icon: SiAngular },
+      { name: 'React', icon: SiReact },
+      { name: 'Next.js', icon: SiNextdotjs },
+      { name: 'TypeScript', icon: SiTypescript },
+      { name: 'jQuery', icon: SiJquery },
+      { name: 'Tailwind CSS', icon: SiTailwindcss },
+      { name: 'Bootstrap', icon: SiBootstrap },
+    ],
+  },
+  {
+    category: 'Backend',
+    icon: Server,
+    items: [
+      { name: 'Node.js', icon: SiNodedotjs },
+      { name: 'Express.js', icon: SiExpress },
+      { name: 'NestJS', icon: SiNestjs },
+    ],
+  },
+  {
+    category: 'Database',
+    icon: Database,
+    items: [
+      { name: 'PostgreSQL', icon: SiPostgresql },
+      { name: 'MySQL', icon: SiMysql },
+      { name: 'MongoDB', icon: SiMongodb },
+      { name: 'Supabase', icon: SiSupabase },
+      { name: 'Firebase', icon: SiFirebase },
+      { name: 'Cloudflare', icon: SiCloudflare },
+    ],
+  },
+  {
+    category: 'Mobile App',
+    icon: Smartphone,
+    items: [
+      { name: 'React Native', icon: SiReact },
+      { name: 'Flutter', icon: SiFlutter },
+    ],
+  },
+  {
+    category: 'Other Tools & Platforms',
+    icon: Wrench,
+    items: [
+      { name: 'Docker', icon: SiDocker },
+      { name: 'GitHub', icon: SiGithub },
+      { name: 'GitHub Actions', icon: SiGithubactions },
+      { name: 'Figma', icon: SiFigma },
+      { name: 'Expo', icon: SiExpo },
+    ],
+  },
+] as const;
+
+export type TechCategory = {
+  category: string;
+  icon: LucideIcon;
+  items: { name: string; icon: IconType }[];
+};
 
 export const LEAD_STATUS_LABELS: Record<string, string> = {
   new: 'New',
