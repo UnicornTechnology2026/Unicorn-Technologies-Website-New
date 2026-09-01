@@ -44,7 +44,7 @@ export default function AdminSidebar() {
           <Sparkles className="h-5 w-5" />
         </span>
         <div>
-          <div className="font-bold text-sm">Unicorn Tech</div>
+          <div className="font-bold text-sm">Unicorn Technologies</div>
           <div className="text-xs text-muted-foreground">Admin Panel</div>
         </div>
       </div>
@@ -101,7 +101,7 @@ export default function AdminSidebar() {
       {/* Mobile toggle */}
       <button
         onClick={() => setMobileOpen(!mobileOpen)}
-        className="fixed left-4 top-3 z-50 flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-card lg:hidden"
+        className="fixed left-4 top-1 z-50 flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-card lg:hidden"
         aria-label="Toggle sidebar"
       >
         {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -116,7 +116,7 @@ export default function AdminSidebar() {
       )}
 
       {/* Desktop sidebar */}
-      <aside className="fixed left-0 top-0 z-30 flex h-screen w-64 flex-col border-r border-border bg-card">
+      <aside className="fixed left-0 top-0 z-30 hidden h-screen w-64 flex-col border-r border-border bg-card lg:flex">
         {sidebarContent}
       </aside>
 

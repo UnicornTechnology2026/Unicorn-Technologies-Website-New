@@ -11,10 +11,10 @@ export default function OurProcess() {
           <span className="text-sm font-semibold uppercase tracking-wider text-primary">
             Our Process
           </span>
-          <h2 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl leading-3">
-            {" "}
-            How We Bring Your <br />{" "}
-            <span className="gradient-text ">Vision to Life</span>
+
+          <h2 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+            How we Bring Your <br />
+            <span className="gradient-text">Vision to Life</span>
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
             A proven, transparent process that ensures every project is
