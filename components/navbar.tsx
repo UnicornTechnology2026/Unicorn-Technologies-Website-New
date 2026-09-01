@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { Menu, X, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useSettings } from "./settings-provider";
+import logo from "../assest/logo.png";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -40,10 +41,12 @@ export default function Navbar() {
       )}
     >
       <nav className="container-mx container-px flex h-16 items-center justify-between md:h-20">
-        <Link href="/" className="flex items-center gap-2 font-bold text-lg">
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-            <Sparkles className="h-5 w-5" />
-          </span>
+        <Link
+          href="/"
+          className="flex items-center justify-center gap-2 font-bold text-lg"
+        >
+          <img src={logo.src} alt="Logo" className="h-16 w-32" />
+
           <span className="text-foreground">
             {settings.company_name.replace(" Technologies", "")}
             &nbsp; <span className="text-primary">Technologies</span>

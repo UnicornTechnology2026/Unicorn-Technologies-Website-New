@@ -12,6 +12,7 @@ import {
   MapPin,
 } from "lucide-react";
 import { useSettings } from "./settings-provider";
+import logo from "../assest/logo.png";
 
 const socialLinks = [
   { key: "facebook_url", icon: Facebook, label: "Facebook" },
@@ -32,9 +33,7 @@ export default function Footer() {
               href="/"
               className="flex items-center gap-2 font-bold text-lg"
             >
-              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                <Sparkles className="h-5 w-5" />
-              </span>
+              <img src={logo.src} alt="Logo" className="h-12 w-20" />
               <span>
                 {settings.company_name.replace(" Technologies", "")}
                 &nbsp; <span className="text-primary">Technologies</span>
