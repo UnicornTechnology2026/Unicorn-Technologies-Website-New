@@ -178,7 +178,7 @@ export default function ContactForm() {
         </div>
       </div>
 
-      <div className="space-y-2 pt-5">
+      <div className="space-y-2 py-5">
         <Label htmlFor="message">Message *</Label>
         <Textarea
           id="message"
