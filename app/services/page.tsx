@@ -11,6 +11,20 @@ export const metadata: Metadata = {
   title: "Services",
   description:
     "Explore our full range of services: website development, mobile app development, digital marketing, maintenance, and custom software solutions.",
+  openGraph: {
+    title: "Services | Unicorn Technologies",
+    description:
+      "Explore our full range of services: website development, mobile app development, digital marketing, maintenance, and custom software solutions.",
+    url: "https://www.unicorntechnologiess.com/services",
+    type: "website",
+    siteName: "Unicorn Technologies",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Services | Unicorn Technologies",
+    description:
+      "Explore our full range of services: website development, mobile app development, digital marketing, maintenance, and custom software solutions.",
+  },
 };
 
 export default function ServicesPage() {

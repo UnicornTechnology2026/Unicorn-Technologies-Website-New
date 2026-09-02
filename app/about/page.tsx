@@ -11,6 +11,20 @@ export const metadata: Metadata = {
   title: "About Us",
   description:
     "Learn about Unicorn Technologies — our mission, vision, and the team behind innovative software and digital solutions.",
+  openGraph: {
+    title: "About Us | Unicorn Technologies",
+    description:
+      "Learn about Unicorn Technologies — our mission, vision, and the team behind innovative software and digital solutions.",
+    url: "https://www.unicorntechnologiess.com/about",
+    type: "website",
+    siteName: "Unicorn Technologies",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Us | Unicorn Technologies",
+    description:
+      "Learn about Unicorn Technologies — our mission, vision, and the team behind innovative software and digital solutions.",
+  },
 };
 
 const values = [

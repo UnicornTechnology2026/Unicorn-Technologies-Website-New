@@ -1,13 +1,28 @@
-import type { Metadata } from 'next';
-import Navbar from '@/components/navbar';
-import Footer from '@/components/footer';
-import ContactForm from '@/components/contact-form';
-import { Reveal } from '@/components/animations';
-import { SettingsInfo } from '@/components/settings-info';
+import type { Metadata } from "next";
+import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
+import ContactForm from "@/components/contact-form";
+import { Reveal } from "@/components/animations";
+import { SettingsInfo } from "@/components/settings-info";
 
 export const metadata: Metadata = {
-  title: 'Contact',
-  description: 'Get in touch with Unicorn Technologies. Start your project, request a free consultation, or ask us anything.',
+  title: "Contact",
+  description:
+    "Get in touch with Unicorn Technologies. Start your project, request a free consultation, or ask us anything.",
+  openGraph: {
+    title: "Contact | Unicorn Technologies",
+    description:
+      "Get in touch with Unicorn Technologies. Start your project, request a free consultation, or ask us anything.",
+    url: "https://www.unicorntechnologiess.com/contact",
+    type: "website",
+    siteName: "Unicorn Technologies",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact | Unicorn Technologies",
+    description:
+      "Get in touch with Unicorn Technologies. Start your project, request a free consultation, or ask us anything.",
+  },
 };
 
 export default function ContactPage() {
@@ -20,12 +35,15 @@ export default function ContactPage() {
           <div className="absolute left-1/2 top-0 h-[300px] w-[500px] -translate-x-1/2 rounded-full bg-primary/10 blur-3xl" />
           <div className="container-mx container-px relative">
             <Reveal className="mx-auto max-w-3xl text-center">
-              <span className="text-sm font-semibold uppercase tracking-wider text-primary">Contact Us</span>
+              <span className="text-sm font-semibold uppercase tracking-wider text-primary">
+                Contact Us
+              </span>
               <h1 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
                 Let's Build <span className="gradient-text">Together</span>
               </h1>
               <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
-                Tell us about your project. We will get back to you within 24 hours with next steps.
+                Tell us about your project. We will get back to you within 24
+                hours with next steps.
               </p>
             </Reveal>
           </div>
