@@ -12,7 +12,8 @@ const defaultSettings: SiteSettings = {
   email: "narendra@unicorntechnologiess.com",
   phone: "+91 9921224567",
   whatsapp: "+91 9921224567",
-  address: "382, Near Trikoni Garden, Shankar Nagar, Nagpur",
+  address:
+    "382, Near Trikoni Garden, Shankar Nagar, Nagpur, Maharashtra 440010",
   facebook_url: "",
   twitter_url: "",
   linkedin_url: "",
