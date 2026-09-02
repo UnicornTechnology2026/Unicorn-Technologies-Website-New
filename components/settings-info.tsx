@@ -30,7 +30,7 @@ export function SettingsInfo() {
 
   return (
     <div className="space-y-6">
-      <div className="rounded-2xl border border-border bg-card p-6 md:p-8">
+      <div className="rounded-2xl border border-border bg-card p-4 md:p-8">
         <h3 className="text-lg font-semibold">Contact Information</h3>
         <p className="mt-2 text-sm text-muted-foreground">
           Prefer to reach us directly? Use the details below.

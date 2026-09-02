@@ -45,7 +45,7 @@ export default function Navbar() {
           href="/"
           className="flex items-center justify-center gap-2 font-bold text-lg"
         >
-          <img src={logo.src} alt="Logo" className="h-16 w-32" />
+          <img src={logo.src} alt="Logo" className="h-16 w-32 p-[2px]" />
         </Link>
 
         <div className="hidden items-center gap-1 md:flex">
