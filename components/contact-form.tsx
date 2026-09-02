@@ -113,7 +113,7 @@ export default function ContactForm() {
         </div>
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="grid gap-5 sm:grid-cols-2 pt-5">
         <div className="space-y-2">
           <Label htmlFor="email">Email *</Label>
           <Input
@@ -132,7 +132,7 @@ export default function ContactForm() {
         </div>
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="grid gap-5 sm:grid-cols-2 pt-5">
         <div className="space-y-2">
           <Label>Service Required *</Label>
           <Select
@@ -178,7 +178,7 @@ export default function ContactForm() {
         </div>
       </div>
 
-      <div className="space-y-2">
+      <div className="space-y-2 pt-5">
         <Label htmlFor="message">Message *</Label>
         <Textarea
           id="message"
@@ -204,7 +204,7 @@ export default function ContactForm() {
           </>
         )}
       </Button>
-      <p className="text-center text-xs text-muted-foreground">
+      <p className="text-center text-xs text-muted-foreground pt-4">
         We respond within 24 hours. Your information is kept confidential.
       </p>
     </form>
