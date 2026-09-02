@@ -1,9 +1,12 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Sora } from "next/font/google";
+import Script from "next/script";
 import { AuthProvider } from "@/lib/auth-context";
 import { Toaster } from "@/components/ui/sonner";
 import { SiteSettingsProvider } from "@/components/settings-provider";
+
+const GA_MEASUREMENT_ID = "G-3JP9JD6FDR";
 
 const sora = Sora({
   subsets: ["latin"],
@@ -50,6 +53,18 @@ export default function RootLayout({
   return (
     <html lang="en" className={sora.variable} suppressHydrationWarning>
       <body className="font-sans antialiased">
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
         <AuthProvider>
           <SiteSettingsProvider>
             {children}
