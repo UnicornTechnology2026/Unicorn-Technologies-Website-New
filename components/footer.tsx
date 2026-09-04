@@ -12,7 +12,6 @@ import {
   MapPin,
 } from "lucide-react";
 import { useSettings } from "./settings-provider";
-import logo from "../assest/logo.png";
 
 const socialLinks = [
   { key: "facebook_url", icon: Facebook, label: "Facebook" },

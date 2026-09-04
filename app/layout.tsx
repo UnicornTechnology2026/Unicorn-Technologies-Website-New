@@ -5,6 +5,7 @@ import Script from "next/script";
 import { AuthProvider } from "@/lib/auth-context";
 import { Toaster } from "@/components/ui/sonner";
 import { SiteSettingsProvider } from "@/components/settings-provider";
+import { JSONLD } from "@/components/json-ld";
 
 const GA_MEASUREMENT_ID = "G-3JP9JD6FDR";
 
@@ -15,6 +16,7 @@ const sora = Sora({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.unicorntechnologiess.com"),
   title: {
     default: "Unicorn Technologies — Software & Digital Solutions",
     template: "%s | Unicorn Technologies",
@@ -53,6 +55,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={sora.variable} suppressHydrationWarning>
       <body className="font-sans antialiased">
+        <JSONLD />
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
           strategy="afterInteractive"

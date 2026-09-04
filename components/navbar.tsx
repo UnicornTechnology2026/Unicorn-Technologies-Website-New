@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -45,7 +46,12 @@ export default function Navbar() {
           href="/"
           className="flex items-center justify-center gap-2 font-bold text-lg"
         >
-          <img src={logo.src} alt="Logo" className="h-16 w-32 p-[2px]" />
+          <Image
+            src={logo}
+            alt="Logo"
+            className="h-16 w-32 p-[2px] object-contain"
+            priority
+          />
         </Link>
 
         <div className="hidden items-center gap-1 md:flex">
