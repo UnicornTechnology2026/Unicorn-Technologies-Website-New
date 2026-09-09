@@ -90,133 +90,58 @@ export default function AdminLoginPage() {
           </p>
         </div>
 
-        {!showBootstrap ? (
-          <form
-            onSubmit={handleLogin}
-            className="space-y-4 rounded-2xl border border-border bg-card p-6 md:p-8"
-          >
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <div className="relative">
-                <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="admin@unicorntechnologies.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="pl-10"
-                  required
-                />
-              </div>
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
-              <div className="relative">
-                <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                <Input
-                  id="password"
-                  type="password"
-                  placeholder="••••••••"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="pl-10"
-                  required
-                />
-              </div>
-            </div>
-            <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? (
-                <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Signing in...
-                </>
-              ) : (
-                "Sign In"
-              )}
-            </Button>
-
-            <button
-              type="button"
-              onClick={() => setShowBootstrap(true)}
-              className="w-full text-center text-xs text-muted-foreground hover:text-primary"
-            >
-              First time setup? Create admin account
-            </button>
-
-            <a
-              href="/"
-              className="flex items-center justify-center gap-1 text-xs text-muted-foreground hover:text-primary"
-            >
-              <ArrowLeft className="h-3 w-3" />
-              Back to website
-            </a>
-          </form>
-        ) : (
-          <form
-            onSubmit={handleBootstrap}
-            className="space-y-4 rounded-2xl border border-border bg-card p-6 md:p-8"
-          >
-            <div className="mb-2 flex items-center gap-2 text-sm font-semibold text-primary">
-              <UserPlus className="h-4 w-4" />
-              Create Admin Account
-            </div>
-            <p className="text-xs text-muted-foreground">
-              This creates the first admin account. Once created, this option
-              will be locked.
-            </p>
-            <div className="space-y-2">
-              <Label htmlFor="bs-name">Full Name</Label>
+        <form
+          onSubmit={handleLogin}
+          className="space-y-4 rounded-2xl border border-border bg-card p-6 md:p-8"
+        >
+          <div className="space-y-2">
+            <Label htmlFor="email">Email</Label>
+            <div className="relative">
+              <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input
-                id="bs-name"
-                placeholder="Admin Name"
-                value={bsName}
-                onChange={(e) => setBsName(e.target.value)}
-                required
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="bs-email">Email</Label>
-              <Input
-                id="bs-email"
+                id="email"
                 type="email"
                 placeholder="admin@unicorntechnologies.com"
-                value={bsEmail}
-                onChange={(e) => setBsEmail(e.target.value)}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="pl-10"
                 required
               />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="bs-password">Password</Label>
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="password">Password</Label>
+            <div className="relative">
+              <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input
-                id="bs-password"
+                id="password"
                 type="password"
-                placeholder="Minimum 6 characters"
-                value={bsPassword}
-                onChange={(e) => setBsPassword(e.target.value)}
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="pl-10"
                 required
-                minLength={6}
               />
             </div>
-            <Button type="submit" className="w-full" disabled={bsLoading}>
-              {bsLoading ? (
-                <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Creating...
-                </>
-              ) : (
-                "Create Admin Account"
-              )}
-            </Button>
-            <button
-              type="button"
-              onClick={() => setShowBootstrap(false)}
-              className="w-full text-center text-xs text-muted-foreground hover:text-primary"
-            >
-              Back to login
-            </button>
-          </form>
-        )}
+          </div>
+          <Button type="submit" className="w-full" disabled={loading}>
+            {loading ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Signing in...
+              </>
+            ) : (
+              "Sign In"
+            )}
+          </Button>
+          <a
+            href="/"
+            className="flex items-center justify-center gap-1 text-xs text-muted-foreground hover:text-primary"
+          >
+            <ArrowLeft className="h-3 w-3" />
+            Back to website
+          </a>
+        </form>
       </div>
     </div>
   );
