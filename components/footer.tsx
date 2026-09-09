@@ -115,18 +115,18 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
-                  href="/services"
+                  href="/website-development-nagpur"
                   className="text-muted-foreground hover:text-primary"
                 >
-                  Website Development
+                  Website Development in Nagpur
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/services"
+                  href="/app-development-in-nagpur"
                   className="text-muted-foreground hover:text-primary"
                 >
-                  Mobile App Development
+                  App Development in Nagpur
                 </Link>
               </li>
               <li>

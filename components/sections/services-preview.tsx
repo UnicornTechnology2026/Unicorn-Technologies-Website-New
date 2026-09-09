@@ -1,21 +1,30 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
-import { SERVICES } from '@/lib/constants';
-import { Reveal, StaggerContainer, StaggerItem } from '@/components/animations';
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { SERVICES } from "@/lib/constants";
+import { Reveal, StaggerContainer, StaggerItem } from "@/components/animations";
+
+const LOCAL_LANDING_PAGE: Record<string, string> = {
+  "website-development": "/website-development-in-nagpur",
+  "mobile-app-development": "/app-development-in-nagpur",
+};
 
 export default function ServicesPreview() {
   return (
     <section className="py-20 md:py-28">
       <div className="container-mx container-px">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <span className="text-sm font-semibold uppercase tracking-wider text-primary">What We Do</span>
+          <span className="text-sm font-semibold uppercase tracking-wider text-primary">
+            What We Do
+          </span>
           <h2 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-            Services Built to Drive <span className="gradient-text">Growth</span>
+            Services Built to Drive{" "}
+            <span className="gradient-text">Growth</span>
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            From web and mobile development to digital marketing and custom software, we deliver solutions that move your business forward.
+            From web and mobile development to digital marketing and custom
+            software, we deliver solutions that move your business forward.
           </p>
         </Reveal>
 
@@ -25,7 +34,10 @@ export default function ServicesPreview() {
             return (
               <StaggerItem key={service.slug}>
                 <Link
-                  href={`/services#${service.slug}`}
+                  href={
+                    LOCAL_LANDING_PAGE[service.slug] ??
+                    `/services#${service.slug}`
+                  }
                   className="group relative block h-full overflow-hidden rounded-2xl border border-border bg-card p-7 transition-all hover:border-primary/40 hover:shadow-xl"
                 >
                   <div className="absolute right-0 top-0 h-24 w-24 translate-x-8 -translate-y-8 rounded-full bg-primary/5 transition-transform group-hover:scale-150" />
@@ -33,7 +45,9 @@ export default function ServicesPreview() {
                     <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                       <Icon className="h-6 w-6" />
                     </div>
-                    <h3 className="mt-5 text-xl font-semibold">{service.title}</h3>
+                    <h3 className="mt-5 text-xl font-semibold">
+                      {service.title}
+                    </h3>
                     <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                       {service.short}
                     </p>

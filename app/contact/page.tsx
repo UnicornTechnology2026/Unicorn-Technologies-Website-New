@@ -6,22 +6,25 @@ import { Reveal } from "@/components/animations";
 import { SettingsInfo } from "@/components/settings-info";
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: "Contact Us — Nagpur",
   description:
-    "Get in touch with Unicorn Technologies. Start your project, request a free consultation, or ask us anything.",
+    "Get in touch with Unicorn Technologies in Nagpur. Start your website or app project, request a free consultation, or ask us anything.",
+  alternates: {
+    canonical: "/contact",
+  },
   openGraph: {
-    title: "Contact | Unicorn Technologies",
+    title: "Contact Us in Nagpur | Unicorn Technologies",
     description:
-      "Get in touch with Unicorn Technologies. Start your project, request a free consultation, or ask us anything.",
+      "Get in touch with Unicorn Technologies in Nagpur. Start your website or app project, request a free consultation, or ask us anything.",
     url: "https://www.unicorntechnologiess.com/contact",
     type: "website",
     siteName: "Unicorn Technologies",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contact | Unicorn Technologies",
+    title: "Contact Us in Nagpur | Unicorn Technologies",
     description:
-      "Get in touch with Unicorn Technologies. Start your project, request a free consultation, or ask us anything.",
+      "Get in touch with Unicorn Technologies in Nagpur. Start your website or app project, request a free consultation, or ask us anything.",
   },
 };
 

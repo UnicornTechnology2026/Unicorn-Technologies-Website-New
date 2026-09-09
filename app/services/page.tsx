@@ -4,26 +4,43 @@ import Footer from "@/components/footer";
 import { Reveal } from "@/components/animations";
 import { SERVICES } from "@/lib/constants";
 import CTASection from "@/components/sections/cta";
-import { Check } from "lucide-react";
+import { Check, ArrowRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+
+const LOCAL_LANDING_PAGE: Record<string, { href: string; label: string }> = {
+  "website-development": {
+    href: "/website-development-in-nagpur",
+    label: "Website Development in Nagpur",
+  },
+  "mobile-app-development": {
+    href: "/app-development-in-nagpur",
+    label: "App Development in Nagpur",
+  },
+};
 
 export const metadata: Metadata = {
-  title: "Services",
+  title: "Services — Website & App Development in Nagpur",
   description:
-    "Explore our full range of services: website development, mobile app development, digital marketing, maintenance, and custom software solutions.",
+    "Website development, app development, digital marketing, maintenance, and custom software services from Unicorn Technologies, a Nagpur-based software company.",
+  alternates: {
+    canonical: "/services",
+  },
   openGraph: {
-    title: "Services | Unicorn Technologies",
+    title:
+      "Services — Website & App Development in Nagpur | Unicorn Technologies",
     description:
-      "Explore our full range of services: website development, mobile app development, digital marketing, maintenance, and custom software solutions.",
+      "Website development, app development, digital marketing, maintenance, and custom software services from a Nagpur-based software company.",
     url: "https://www.unicorntechnologiess.com/services",
     type: "website",
     siteName: "Unicorn Technologies",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Services | Unicorn Technologies",
+    title:
+      "Services — Website & App Development in Nagpur | Unicorn Technologies",
     description:
-      "Explore our full range of services: website development, mobile app development, digital marketing, maintenance, and custom software solutions.",
+      "Website development, app development, digital marketing, maintenance, and custom software services from a Nagpur-based software company.",
   },
 };
 
@@ -91,6 +108,15 @@ export default function ServicesPage() {
                             </li>
                           ))}
                         </ul>
+                        {LOCAL_LANDING_PAGE[service.slug] && (
+                          <Link
+                            href={LOCAL_LANDING_PAGE[service.slug].href}
+                            className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
+                          >
+                            {LOCAL_LANDING_PAGE[service.slug].label}
+                            <ArrowRight className="h-4 w-4" />
+                          </Link>
+                        )}
                       </div>
                       <div className="[direction:ltr]">
                         <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br from-primary/10 to-cyan-400/10">

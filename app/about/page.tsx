@@ -8,22 +8,25 @@ import CTASection from "@/components/sections/cta";
 import { Target, Eye, Heart, Users, Rocket, Award } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About Us",
+  title: "About Us — A Nagpur-Based Software Company",
   description:
-    "Learn about Unicorn Technologies — our mission, vision, and the team behind innovative software and digital solutions.",
+    "Learn about Unicorn Technologies, a Nagpur-based software company — our mission, vision, and the team behind innovative website, app, and digital solutions.",
+  alternates: {
+    canonical: "/about",
+  },
   openGraph: {
-    title: "About Us | Unicorn Technologies",
+    title: "About Us | Unicorn Technologies, Nagpur",
     description:
-      "Learn about Unicorn Technologies — our mission, vision, and the team behind innovative software and digital solutions.",
+      "Learn about Unicorn Technologies, a Nagpur-based software company — our mission, vision, and the team behind innovative website, app, and digital solutions.",
     url: "https://www.unicorntechnologiess.com/about",
     type: "website",
     siteName: "Unicorn Technologies",
   },
   twitter: {
     card: "summary_large_image",
-    title: "About Us | Unicorn Technologies",
+    title: "About Us | Unicorn Technologies, Nagpur",
     description:
-      "Learn about Unicorn Technologies — our mission, vision, and the team behind innovative software and digital solutions.",
+      "Learn about Unicorn Technologies, a Nagpur-based software company — our mission, vision, and the team behind innovative website, app, and digital solutions.",
   },
 };
 

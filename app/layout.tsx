@@ -18,33 +18,51 @@ const sora = Sora({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.unicorntechnologiess.com"),
   title: {
-    default: "Unicorn Technologies — Software & Digital Solutions",
-    template: "%s | Unicorn Technologies",
+    default:
+      "Unicorn Technologies — Website & App Development Company in Nagpur",
+    template: "%s | Unicorn Technologies, Nagpur",
   },
   description:
-    "Unicorn Technologies builds custom software, websites, and mobile apps. We help startups and enterprises transform ideas into digital reality.",
+    "Unicorn Technologies is a Nagpur-based website development and app development company. We build custom websites, mobile apps, and software for startups and businesses in Nagpur and beyond.",
   keywords: [
-    "software development",
-    "web development",
-    "mobile app development",
-    "digital marketing",
-    "custom software",
+    "website development in Nagpur",
+    "web development company in Nagpur",
+    "app development in Nagpur",
+    "mobile app development company Nagpur",
+    "software development company Nagpur",
+    "digital marketing agency Nagpur",
+    "custom software development Nagpur",
     "Unicorn Technologies",
   ],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "Unicorn Technologies — Software & Digital Solutions",
+    title: "Unicorn Technologies — Website & App Development Company in Nagpur",
     description:
-      "Custom software, web, and mobile solutions engineered to grow your business.",
+      "Custom websites, mobile apps, and software built for businesses in Nagpur — engineered to grow your business.",
     type: "website",
     siteName: "Unicorn Technologies",
+    locale: "en_IN",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Unicorn Technologies — Software & Digital Solutions",
+    title: "Unicorn Technologies — Website & App Development Company in Nagpur",
     description:
-      "Custom software, web, and mobile solutions engineered to grow your business.",
+      "Custom websites, mobile apps, and software built for businesses in Nagpur — engineered to grow your business.",
   },
   robots: { index: true, follow: true },
+  other: {
+    // Geo meta tags — a minor but standard local-SEO signal for
+    // location-aware crawlers and some directory/aggregator tools.
+    "geo.region": "IN-MH",
+    "geo.placename": "Nagpur",
+    "geo.position": "21.1614;79.0768",
+    ICBM: "21.1614, 79.0768",
+  },
+  // If you have a Google Search Console verification meta tag, add it here
+  // instead of/alongside the public/google239e133837992d46.html file, e.g.:
+  // verification: { google: "your-verification-code" },
 };
 
 export default function RootLayout({
