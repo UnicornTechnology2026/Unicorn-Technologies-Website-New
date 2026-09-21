@@ -8,6 +8,7 @@ import { SiteSettingsProvider } from "@/components/settings-provider";
 import { JSONLD } from "@/components/json-ld";
 
 const GA_MEASUREMENT_ID = "G-3JP9JD6FDR";
+const ADSENSE_CLIENT_ID = "ca-pub-5479733402838807";
 
 const sora = Sora({
   subsets: ["latin"],
@@ -53,6 +54,8 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
   other: {
+    // Google AdSense account meta tag (alternative verification method).
+    "google-adsense-account": ADSENSE_CLIENT_ID,
     // Geo meta tags — a minor but standard local-SEO signal for
     // location-aware crawlers and some directory/aggregator tools.
     "geo.region": "IN-MH",
@@ -72,6 +75,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={sora.variable} suppressHydrationWarning>
+      <head>
+        {/* Google AdSense — plain script tag so it is present in the initial HTML */}
+        <script
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT_ID}`}
+          crossOrigin="anonymous"
+        />
+      </head>
       <body className="font-sans antialiased">
         <JSONLD />
         <Script
