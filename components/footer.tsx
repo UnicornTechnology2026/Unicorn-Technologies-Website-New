@@ -198,12 +198,17 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} {settings.company_name}. All
             rights reserved.
           </p>
-          <Link
-            href="/admin/login"
-            className="text-xs text-muted-foreground/60 hover:text-primary"
-          >
-            Admin Login
-          </Link>
+          <div className="flex items-center gap-4">
+            <Link href="/privacy-policy" className="hover:text-primary">
+              Privacy Policy
+            </Link>
+            <Link
+              href="/admin/login"
+              className="text-xs text-muted-foreground/60 hover:text-primary"
+            >
+              Admin Login
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
