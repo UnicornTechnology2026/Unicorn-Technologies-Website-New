@@ -18,6 +18,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Checkbox } from "@radix-ui/react-checkbox";
+import Link from "next/link";
 
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
@@ -32,7 +34,16 @@ export default function ContactForm() {
     formState: { errors },
   } = useForm<EnquiryFormData>({
     resolver: zodResolver(enquirySchema),
+    defaultValues: {
+      service_consent: false,
+      marketing_email: false,
+      marketing_whatsapp: false,
+    },
   });
+
+  const serviceConsent = watch("service_consent");
+  const marketingEmail = watch("marketing_email");
+  const marketingWhatsapp = watch("marketing_whatsapp");
 
   const serviceValue = watch("service");
   const budgetValue = watch("budget");
@@ -75,6 +86,16 @@ export default function ContactForm() {
     }
   };
 
+  const onInvalid = (formErrors: typeof errors) => {
+    if (formErrors.service_consent) {
+      toast.error("Please tick the agreement box before sending your enquiry.");
+      document
+        .getElementById("service_consent")
+        ?.scrollIntoView({ behavior: "smooth", block: "center" });
+      document.getElementById("service_consent")?.focus();
+    }
+  };
+
   if (submitted) {
     return (
       <div className="flex flex-col items-center justify-center rounded-2xl border border-border bg-card p-12 text-center">
@@ -98,7 +119,7 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="#37373b pr-5">
+    <form onSubmit={handleSubmit(onSubmit, onInvalid)} className="#37373b pr-5">
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="space-y-2">
           <Label htmlFor="name">Name *</Label>
@@ -128,7 +149,14 @@ export default function ContactForm() {
         </div>
         <div className="space-y-2">
           <Label htmlFor="phone">Phone</Label>
-          <Input id="phone" {...register("phone")} />
+          <Input
+            id="phone"
+            {...register("phone")}
+            aria-invalid={!!errors.phone}
+          />
+          {errors.phone && (
+            <p className="text-xs text-destructive">{errors.phone.message}</p>
+          )}
         </div>
       </div>
 
@@ -189,6 +217,86 @@ export default function ContactForm() {
         {errors.message && (
           <p className="text-xs text-destructive">{errors.message.message}</p>
         )}
+      </div>
+
+      {/* ── Consent ── */}
+      <div className="space-y-4 pb-5">
+        {/* 1. Needed to deliver the service */}
+        <div className="flex items-start gap-3">
+          <input
+            type="checkbox"
+            id="service_consent"
+            checked={serviceConsent}
+            onChange={(e) =>
+              setValue("service_consent", e.target.checked, {
+                shouldValidate: true,
+              })
+            }
+            aria-invalid={!!errors.service_consent}
+            className="mt-0.5 h-5 w-5 shrink-0 cursor-pointer rounded border-gray-400 accent-[#EF0907]"
+          />
+          <Label
+            htmlFor="service_consent"
+            className="text-sm font-normal leading-snug"
+          >
+            I agree that Unicorn Technologies may store my details and contact
+            me by email or phone to respond to this enquiry. See our{" "}
+            <Link href="/privacy-policy" className="underline">
+              Privacy Policy
+            </Link>
+            . *
+          </Label>
+        </div>
+        {errors.service_consent && (
+          <p className="text-sm font-medium text-destructive">
+            {errors.service_consent.message}
+          </p>
+        )}
+
+        {/* 2. Optional marketing, kept separate from the above */}
+        <div className="rounded-lg border border-border p-4 space-y-3">
+          <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+            Optional: you can still send your enquiry without ticking these
+          </p>
+          <div className="flex items-start gap-3">
+            <input
+              type="checkbox"
+              id="marketing_email"
+              checked={marketingEmail}
+              onChange={(e) => setValue("marketing_email", e.target.checked)}
+              className="mt-0.5 h-5 w-5 shrink-0 cursor-pointer rounded border-gray-400 accent-[#EF0907]"
+            />
+            <Label
+              htmlFor="marketing_email"
+              className="text-sm font-normal leading-snug"
+            >
+              Send me occasional emails about offers, news and tips.
+            </Label>
+          </div>
+          <div className="flex items-start gap-3">
+            <input
+              type="checkbox"
+              id="marketing_whatsapp"
+              checked={marketingWhatsapp}
+              onChange={(e) =>
+                setValue("marketing_whatsapp", e.target.checked, {
+                  shouldValidate: true,
+                })
+              }
+              className="mt-0.5 h-5 w-5 shrink-0 cursor-pointer rounded border-gray-400 accent-[#EF0907]"
+            />
+            <Label
+              htmlFor="marketing_whatsapp"
+              className="text-sm font-normal leading-snug"
+            >
+              Send me updates on WhatsApp at the phone number above.
+            </Label>
+          </div>
+          <p className="text-xs text-muted-foreground">
+            You can withdraw any of these at any time using the link in every
+            message we send.
+          </p>
+        </div>
       </div>
 
       <Button type="submit" disabled={loading} className="w-full" size="lg">

@@ -6,6 +6,8 @@ import { AuthProvider } from "@/lib/auth-context";
 import { Toaster } from "@/components/ui/sonner";
 import { SiteSettingsProvider } from "@/components/settings-provider";
 import { JSONLD } from "@/components/json-ld";
+import { CookieConsentProvider } from "@/components/cookie-consent";
+import TrackingScripts from "@/components/tracking-scripts";
 
 const GA_MEASUREMENT_ID = "G-3JP9JD6FDR";
 const ADSENSE_CLIENT_ID = "ca-pub-5479733402838807";
@@ -75,34 +77,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={sora.variable} suppressHydrationWarning>
-      <head>
-        {/* Google AdSense — plain script tag so it is present in the initial HTML */}
-        <script
-          async
-          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT_ID}`}
-          crossOrigin="anonymous"
-        />
-      </head>
-      <body className="font-sans antialiased">
+      <body className="font-sans antialiased" suppressHydrationWarning>
         <JSONLD />
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_MEASUREMENT_ID}');
-          `}
-        </Script>
-        <AuthProvider>
-          <SiteSettingsProvider>
-            {children}
-            <Toaster position="bottom-right" richColors />
-          </SiteSettingsProvider>
-        </AuthProvider>
+        <CookieConsentProvider>
+          <TrackingScripts />
+          <AuthProvider>
+            <SiteSettingsProvider>
+              {children}
+              <Toaster position="bottom-right" richColors />
+            </SiteSettingsProvider>
+          </AuthProvider>
+        </CookieConsentProvider>
       </body>
     </html>
   );

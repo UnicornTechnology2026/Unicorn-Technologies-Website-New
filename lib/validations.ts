@@ -1,27 +1,45 @@
-import { z } from 'zod';
+import { z } from "zod";
 
-export const enquirySchema = z.object({
-  name: z.string().min(2, 'Name must be at least 2 characters'),
-  company: z.string().optional(),
-  email: z.string().email('Please enter a valid email address'),
-  phone: z.string().optional(),
-  service: z.string().min(1, 'Please select a service'),
-  budget: z.string().optional(),
-  message: z.string().min(10, 'Message must be at least 10 characters'),
-});
+export const enquirySchema = z
+  .object({
+    name: z.string().min(2, "Name must be at least 2 characters"),
+    company: z.string().optional(),
+    email: z.string().email("Please enter a valid email address"),
+    phone: z.string().optional(),
+    service: z.string().min(1, "Please select a service"),
+    budget: z.string().optional(),
+    message: z.string().min(10, "Message must be at least 10 characters"),
+
+    // Needed to deliver the service (required, never pre-ticked)
+    service_consent: z.boolean().refine((v) => v === true, {
+      message: "Please agree so we can respond to your enquiry",
+    }),
+    // Optional and separate (never pre-ticked)
+    marketing_email: z.boolean(),
+    marketing_whatsapp: z.boolean(),
+  })
+  .superRefine((d, ctx) => {
+    if (d.marketing_whatsapp && !d.phone?.trim()) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["phone"],
+        message: "Enter your phone number to get WhatsApp updates",
+      });
+    }
+  });
 
 export type EnquiryFormData = z.infer<typeof enquirySchema>;
 
 export const adminLoginSchema = z.object({
-  email: z.string().email('Please enter a valid email address'),
-  password: z.string().min(6, 'Password must be at least 6 characters'),
+  email: z.string().email("Please enter a valid email address"),
+  password: z.string().min(6, "Password must be at least 6 characters"),
 });
 
 export type AdminLoginData = z.infer<typeof adminLoginSchema>;
 
 export const portfolioSchema = z.object({
-  title: z.string().min(1, 'Title is required'),
-  category: z.string().min(1, 'Category is required'),
+  title: z.string().min(1, "Title is required"),
+  category: z.string().min(1, "Category is required"),
   description: z.string().optional(),
   image_url: z.string().optional(),
   project_url: z.string().optional(),
@@ -32,21 +50,27 @@ export const portfolioSchema = z.object({
 });
 
 export const blogPostSchema = z.object({
-  title: z.string().min(1, 'Title is required'),
-  slug: z.string().min(1, 'Slug is required').regex(/^[a-z0-9-]+$/, 'Slug must be lowercase letters, numbers, and hyphens only'),
+  title: z.string().min(1, "Title is required"),
+  slug: z
+    .string()
+    .min(1, "Slug is required")
+    .regex(
+      /^[a-z0-9-]+$/,
+      "Slug must be lowercase letters, numbers, and hyphens only",
+    ),
   excerpt: z.string().optional(),
-  content: z.string().min(1, 'Content is required'),
+  content: z.string().min(1, "Content is required"),
   cover_image: z.string().optional(),
   author: z.string().optional(),
   tags: z.array(z.string()).default([]),
-  status: z.enum(['draft', 'published']).default('draft'),
+  status: z.enum(["draft", "published"]).default("draft"),
 });
 
 export const testimonialSchema = z.object({
-  author: z.string().min(1, 'Author name is required'),
+  author: z.string().min(1, "Author name is required"),
   role: z.string().optional(),
   company: z.string().optional(),
-  quote: z.string().min(5, 'Quote is required'),
+  quote: z.string().min(5, "Quote is required"),
   avatar_url: z.string().optional(),
   rating: z.number().min(1).max(5).default(5),
   published: z.boolean().default(true),
@@ -73,3 +97,16 @@ export const settingsSchema = z.object({
   stats_team: z.string().optional(),
   stats_years: z.string().optional(),
 });
+
+export const grievanceSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Please enter a valid email address"),
+  phone: z.string().optional(),
+  category: z.string().min(1, "Please select a category"),
+  description: z
+    .string()
+    .min(20, "Please describe the issue in at least 20 characters"),
+  website: z.string().optional(), // honeypot: must stay empty
+});
+
+export type GrievanceFormData = z.infer<typeof grievanceSchema>;

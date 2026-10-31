@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import {
-  Sparkles,
   Facebook,
   Twitter,
   Linkedin,
@@ -12,6 +11,8 @@ import {
   MapPin,
 } from "lucide-react";
 import { useSettings } from "./settings-provider";
+import PrivacyPolicyDialog from "./privacy-policy-dialog";
+import { useCookieConsent } from "./cookie-consent";
 
 const socialLinks = [
   { key: "facebook_url", icon: Facebook, label: "Facebook" },
@@ -22,6 +23,7 @@ const socialLinks = [
 
 export default function Footer() {
   const { settings } = useSettings();
+  const { openSettings } = useCookieConsent();
 
   return (
     <footer className="border-t border-border bg-secondary/30">
@@ -199,8 +201,16 @@ export default function Footer() {
             rights reserved.
           </p>
           <div className="flex items-center gap-4">
-            <Link href="/privacy-policy" className="hover:text-primary">
-              Privacy Policy
+            <PrivacyPolicyDialog />
+            <button
+              type="button"
+              onClick={openSettings}
+              className="hover:text-primary"
+            >
+              Cookie settings
+            </button>
+            <Link href="/grievance" className="hover:text-primary">
+              Grievance Redressal
             </Link>
             <Link
               href="/admin/login"
