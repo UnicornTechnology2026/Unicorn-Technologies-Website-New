@@ -27,7 +27,26 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Loader2, Search, Mail, Phone, Building2, Inbox } from "lucide-react";
+import {
+  Loader2,
+  Search,
+  Mail,
+  Phone,
+  Building2,
+  Inbox,
+  Trash2,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
 const STATUS_OPTIONS: { value: EnquiryStatus; label: string }[] = [
   { value: "new", label: "New" },
@@ -70,6 +89,8 @@ export default function EnquiriesPage() {
   );
   const [selected, setSelected] = useState<Enquiry | null>(null);
   const [updatingId, setUpdatingId] = useState<string | null>(null);
+  const [deleteTarget, setDeleteTarget] = useState<Enquiry | null>(null);
+  const [deleting, setDeleting] = useState(false);
 
   const loadEnquiries = async () => {
     setLoading(true);
@@ -123,6 +144,32 @@ export default function EnquiriesPage() {
       toast.success("Status updated");
     }
     setUpdatingId(null);
+  };
+
+  const handleDelete = async () => {
+    if (!deleteTarget) return;
+    setDeleting(true);
+    const { data, error } = await supabase
+      .from("enquiries")
+      .delete()
+      .eq("id", deleteTarget.id)
+      .select("id");
+    setDeleting(false);
+
+    if (error) {
+      toast.error("Could not delete: " + error.message);
+      return;
+    }
+    if (!data || data.length === 0) {
+      toast.error(
+        "Nothing was deleted. Check the delete permission (RLS) in Supabase.",
+      );
+      return;
+    }
+    setEnquiries((prev) => prev.filter((e) => e.id !== deleteTarget.id));
+    if (selected?.id === deleteTarget.id) setSelected(null);
+    setDeleteTarget(null);
+    toast.success("Enquiry deleted");
   };
 
   return (
@@ -186,6 +233,7 @@ export default function EnquiriesPage() {
                 <TableHead className="hidden lg:table-cell">Service</TableHead>
                 <TableHead className="hidden sm:table-cell">Received</TableHead>
                 <TableHead>Status</TableHead>
+                <TableHead className="w-12" />
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -218,7 +266,7 @@ export default function EnquiriesPage() {
                       }
                       disabled={updatingId === enquiry.id}
                     >
-                      <SelectTrigger className="h-8 w-40 border-0 bg-transparent p-0">
+                      <SelectTrigger className="h-8 w-auto justify-start gap-1.5 border-0 bg-transparent p-0 focus:ring-0">
                         <Badge
                           variant="outline"
                           className={STATUS_STYLES[enquiry.status]}
@@ -238,6 +286,17 @@ export default function EnquiriesPage() {
                         ))}
                       </SelectContent>
                     </Select>
+                  </TableCell>
+                  <TableCell onClick={(e) => e.stopPropagation()}>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      aria-label="Delete enquiry"
+                      className="text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
+                      onClick={() => setDeleteTarget(enquiry)}
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
                   </TableCell>
                 </TableRow>
               ))}
@@ -335,12 +394,47 @@ export default function EnquiriesPage() {
                       ))}
                     </SelectContent>
                   </Select>
+                  <Button
+                    variant="outline"
+                    className="w-full text-destructive hover:bg-destructive/10 hover:text-destructive"
+                    onClick={() => setDeleteTarget(selected)}
+                  >
+                    <Trash2 className="mr-2 h-4 w-4" />
+                    Delete this enquiry
+                  </Button>
                 </div>
               </div>
             </>
           )}
         </DialogContent>
       </Dialog>
+      <AlertDialog
+        open={!!deleteTarget}
+        onOpenChange={(o) => !o && setDeleteTarget(null)}
+      >
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Delete this enquiry?</AlertDialogTitle>
+            <AlertDialogDescription>
+              {deleteTarget?.name} ({deleteTarget?.email}) will be permanently
+              removed, along with its notes. This cannot be undone.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel disabled={deleting}>Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              disabled={deleting}
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+              onClick={(e) => {
+                e.preventDefault();
+                handleDelete();
+              }}
+            >
+              {deleting ? "Deleting…" : "Delete"}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }

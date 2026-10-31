@@ -9,11 +9,7 @@ import { toast } from "sonner";
 import {
   LayoutDashboard,
   Inbox,
-  FolderKanban,
-  FileText,
-  Star,
-  Settings,
-  User,
+  ShieldAlert,
   LogOut,
   Sparkles,
   Menu,
@@ -23,6 +19,7 @@ import {
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
   { href: "/admin/enquiries", label: "Enquiries", icon: Inbox },
+  { href: "/admin/grievances", label: "Grievances", icon: ShieldAlert },
 ];
 
 export default function AdminSidebar() {

@@ -1,10 +1,10 @@
 export type EnquiryStatus =
-  | 'new'
-  | 'contacted'
-  | 'in_progress'
-  | 'proposal_sent'
-  | 'won'
-  | 'lost';
+  | "new"
+  | "contacted"
+  | "in_progress"
+  | "proposal_sent"
+  | "won"
+  | "lost";
 
 export interface Enquiry {
   id: string;
@@ -68,5 +68,31 @@ export interface Admin {
   id: string;
   email: string;
   full_name: string;
-  role: 'admin' | 'super_admin';
+  role: "admin" | "super_admin";
+}
+
+export type GrievanceStatus =
+  | "received"
+  | "acknowledged"
+  | "in_progress"
+  | "resolved"
+  | "closed";
+
+export interface Grievance {
+  id: string;
+  ticket_no: string;
+  name: string;
+  email: string;
+  phone: string | null;
+  category: string;
+  description: string;
+  status: GrievanceStatus;
+  acknowledge_by: string;
+  resolve_by: string;
+  legal_deadline: string;
+  acknowledged_at: string | null;
+  resolved_at: string | null;
+  resolution_note: string | null;
+  created_at: string;
+  updated_at: string;
 }

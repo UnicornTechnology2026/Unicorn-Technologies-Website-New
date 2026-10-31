@@ -115,3 +115,21 @@ select,
   -moz-user-select: text;
   user-select: text;
 }
+
+/* Red border on fields that have a validation error */
+input[aria-invalid="true"],
+textarea[aria-invalid="true"] {
+  border-color: hsl(var(--destructive));
+}
+
+input[aria-invalid="true"]:focus-visible,
+textarea[aria-invalid="true"]:focus-visible {
+  --tw-ring-color: hsl(var(--destructive));
+  outline-color: hsl(var(--destructive));
+}
+
+/* Plain checkboxes (consent box) get a red outline when required but unticked */
+input[type="checkbox"][aria-invalid="true"] {
+  outline: 2px solid hsl(var(--destructive));
+  outline-offset: 2px;
+}
